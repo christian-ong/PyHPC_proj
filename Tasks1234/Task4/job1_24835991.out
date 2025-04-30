@@ -1,0 +1,83 @@
+Timer unit: 1e-06 s
+
+Total time: 71.4819 s
+File: Tasks1234/Task4.py
+Function: jacobi at line 13
+
+Line #      Hits         Time  Per Hit   % Time  Line Contents
+==============================================================
+    13                                           @profile
+    14                                           def jacobi(u, interior_mask, max_iter, atol=1e-6):
+    15        10       5656.0    565.6      0.0      u = np.copy(u)
+    16                                           
+    17     47282      17536.0      0.4      0.0      for i in range(max_iter):
+    18                                                   # Compute average of left, right, up and down neighbors, see eq. (1)
+    19     47282   41233632.9    872.1     57.7          u_new = 0.25 * (u[1:-1, :-2] + u[1:-1, 2:] + u[:-2, 1:-1] + u[2:, 1:-1])
+    20     47282    7616129.7    161.1     10.7          u_new_interior = u_new[interior_mask]
+    21     47282   14276904.6    302.0     20.0          delta = np.abs(u[1:-1, 1:-1][interior_mask] - u_new_interior).max()
+    22     47282    8282652.0    175.2     11.6          u[1:-1, 1:-1][interior_mask] = u_new_interior
+    23                                           
+    24     47282      49373.7      1.0      0.1          if delta < atol:
+    25        10          6.2      0.6      0.0              break
+    26        10          2.5      0.3      0.0      return u
+
+ 71.48 seconds - Tasks1234/Task4.py:13 - jacobi
+
+------------------------------------------------------------
+Sender: LSF System <lsfadmin@hpc.dtu.dk>
+Subject: Job 24835991: <job1> in cluster <dcc> Done
+
+Job <job1> was submitted from host <hpclogin1> by user <s214601> in cluster <dcc> at Wed Apr 30 13:05:14 2025
+Job was executed on host(s) <n-62-12-22>, in queue <c02613>, as user <s214601> in cluster <dcc> at Wed Apr 30 13:05:16 2025
+</zhome/1d/5/168187> was used as the home directory.
+</zhome/1d/5/168187/Documents/PyHPC_proj> was used as the working directory.
+Started at Wed Apr 30 13:05:16 2025
+Terminated at Wed Apr 30 13:05:18 2025
+Results reported at Wed Apr 30 13:05:18 2025
+
+Your job looked like:
+
+------------------------------------------------------------
+# LSBATCH: User input
+#!/bin/bash
+#BSUB -J job1
+#BSUB -q c02613
+#BSUB -W 5
+#BSUB -R "span[hosts=1]"
+#BSUB -R "rusage[mem=2GB]"
+#BSUB -n 1
+#BSUB -o job1_%J.out
+#BSUB -e job1_%J.err
+
+# activate the virtual environment
+source /dtu/projects/02613_2024/conda/conda_init.sh
+conda activate 02613
+
+# kernprof -l Tasks1234/Task4.py 10
+# python -m line_profiler -rmt "python.lprof"
+python -m line_profiler -rmt "Task4.py.lprof"
+------------------------------------------------------------
+
+Successfully completed.
+
+Resource usage summary:
+
+    CPU time :                                   0.78 sec.
+    Max Memory :                                 -
+    Average Memory :                             -
+    Total Requested Memory :                     2048.00 MB
+    Delta Memory :                               -
+    Max Swap :                                   -
+    Max Processes :                              -
+    Max Threads :                                -
+    Run time :                                   26 sec.
+    Turnaround time :                            4 sec.
+
+The output (if any) is above this job summary.
+
+
+
+PS:
+
+Read file <job1_24835991.err> for stderr output of this job.
+
