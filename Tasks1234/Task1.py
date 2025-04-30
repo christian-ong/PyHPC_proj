@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 data_dir = '/dtu/projects/02613_2025/data/modified_swiss_dwellings/'
-output_base = './figures/Task1/'
+output_base = './Tasks1234/figures/Task1/'
 
 os.makedirs(output_base, exist_ok=True)
 
@@ -29,7 +29,7 @@ for dom_path in domain_paths:
     plt.close()
 
     plt.figure(figsize=(6,6))
-    plt.imshow(mask, cmap='gray', origin='lower')
+    plt.imshow(mask, cmap='gray')
     plt.title(f'Building {b_id} — Interior Mask')
     plt.axis('off')
     plt.savefig(os.path.join(out_dir, 'mask.png'), dpi=300, bbox_inches='tight')

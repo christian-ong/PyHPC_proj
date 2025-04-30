@@ -74,7 +74,7 @@ if __name__ == '__main__':
     for u, bid in zip(all_u[:3], building_ids[:3]):
         plt.figure(figsize=(6, 6))
         temp = u[1:-1, 1:-1]
-        im = plt.imshow(temp, cmap='hot', origin='lower')
+        im = plt.imshow(temp)
         plt.title(f'Building {bid}\nFinal Temp')
         plt.axis('off')
         plt.colorbar(im, label='°C') 
